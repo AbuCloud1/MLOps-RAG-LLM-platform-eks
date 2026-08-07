@@ -1,0 +1,11 @@
+My tech and DevOps interests
+
+Tech is both my work and one of my genuine interests. I enjoy the cloud and infrastructure side of things especially. There's something satisfying about building systems that are reliable, automated, and well designed, infrastructure that just works.
+
+I like working with tools like Kubernetes, Terraform, and the whole ecosystem around cloud platforms. Infrastructure as code appeals to me a lot, the idea that you can describe an entire system in text, version it, and rebuild it reliably. It brings a discipline and repeatability to infrastructure that I really value.
+
+Automation is a big theme for me. I enjoy taking something manual and repetitive and turning it into something that runs itself. Writing a bit of Python or a pipeline that removes toil and saves hours of work is genuinely satisfying. The best automation is the kind you set up once and then forget about because it just quietly does its job.
+
+I like understanding systems end to end, how the network, the compute, the security, and the deployment pipeline all fit together. I'm not happy just knowing that something works, I want to know why it works and how the pieces connect.
+
+I also enjoy sharing what I learn. Writing things up, explaining a concept clearly, and helping others get their head around something tricky is part of the fun. Teaching an idea back is how I make sure I actually understand it myself.

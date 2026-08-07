@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vllm
+  namespace: rag
+  labels:
+    app: vllm
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vllm
+  template:
+    metadata:
+      labels:
+        app: vllm
+    spec:
+      # k8s auto-injects a VLLM_PORT env var from the "vllm" service
+      # (legacy docker-links style), collides with vLLM's own env var
+      # of the same name and crashes it on startup
+      enableServiceLinks: false
+      # land on the GPU node, tolerate its taint
+      nodeSelector:
+        nvidia.com/gpu: "true"
+      tolerations:
+        - key: nvidia.com/gpu
+          operator: Exists
+          effect: NoSchedule
+      containers:
+        - name: vllm
+          image: vllm/vllm-openai:v0.6.6
+          args:
+            - "--model"
+            - "TinyLlama/TinyLlama-1.1B-Chat-v1.0"
+            - "--max-model-len"
+            - "2048"
+            - "--gpu-memory-utilization"
+            - "0.9"
+            # T4 (compute capability 7.5) doesn't support bfloat16,
+            # vLLM's default dtype - use float16 instead
+            - "--dtype"
+            - "half"
+          ports:
+            - name: http
+              containerPort: 8000
+          resources:
+            limits:
+              # requesting the GPU is what makes the scheduler place this
+              # on the GPU node
+              nvidia.com/gpu: 1
+          # model download + load takes a few minutes on first start,
+          # give it generous time before health checks kick in
+          startupProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            failureThreshold: 60
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            periodSeconds: 10

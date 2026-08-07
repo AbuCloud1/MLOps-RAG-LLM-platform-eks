@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: qdrant-storage
+  namespace: rag
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      # note docs are tiny, 5Gi is plenty and cheap
+      storage: 5Gi

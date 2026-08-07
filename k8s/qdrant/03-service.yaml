@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: qdrant
+  namespace: rag
+  labels:
+    app: qdrant
+spec:
+  # internal only, nothing exposed to the internet
+  type: ClusterIP
+  selector:
+    app: qdrant
+  ports:
+    - name: http
+      port: 6333
+      targetPort: 6333
+    - name: grpc
+      port: 6334
+      targetPort: 6334

@@ -1,0 +1,30 @@
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+*.tfvars
+
+# Local env
+.env
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# macOS
+.DS_Store
+
+# Editor/tooling
+.cursor/
+.claude/
+
+# Source profile photo (already copied into retrieval-app/static/avatar.jpg)
+1749550520731 (1).jpeg
+
+# Local-only scripts, not for the public repo
+scripts/nuke.sh
+
+# Local working notes, not for the public repo
+CLAUDE.md

@@ -1,0 +1,11 @@
+My interest in AI and machine learning
+
+I find AI and machine learning genuinely fascinating. It's one of those areas where the more you learn, the more interesting it gets. The idea that you can take data, learn patterns from it, and end up with something that can generate language or make predictions still feels a bit like magic even when you understand the mechanics.
+
+I enjoy understanding how things work under the hood. Concepts like how a model learns from examples, the difference between training and inference, how neural networks are really just layers of maths, all of it clicks for me when I can picture it with a good analogy. I like breaking complex ideas down into simple mental models.
+
+Large language models are the part I find most exciting right now. The pace of progress is wild, and the way these models can hold a conversation, write, reason, and help solve problems is remarkable. I like following where the field is going and thinking about what these systems can and can't do.
+
+I'm the kind of person who learns by building and by explaining. If I can describe something in my own words, I know it's clicked. I like using analogies to make abstract ideas concrete, and I find that teaching an idea back is the best test of whether I actually understand it.
+
+More than anything I'm just curious about it. AI sits right at the intersection of maths, engineering, and creativity, and that mix is what keeps me interested.
