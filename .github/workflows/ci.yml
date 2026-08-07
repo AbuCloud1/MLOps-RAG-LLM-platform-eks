@@ -53,4 +53,4 @@ jobs:
           sudo mv kubeconform /usr/local/bin/
 
       - name: Validate k8s manifests
-        run: kubeconform -summary -ignore-missing-schemas -lenient k8s/
+        run: kubeconform -summary -ignore-missing-schemas k8s/
