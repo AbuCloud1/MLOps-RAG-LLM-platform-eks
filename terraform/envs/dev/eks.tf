@@ -15,6 +15,11 @@ module "eks" {
   vpc_id     = module.vpc.vpc_id
   subnet_ids = module.vpc.private_subnets
 
+  # tags the node security group so Karpenter's EC2NodeClass can find it
+  node_security_group_tags = {
+    "karpenter.sh/discovery" = var.cluster_name
+  }
+
   # core addons, versions resolved automatically.
   # aws-ebs-csi-driver needs an IAM role (below) to call the EBS API
   # and create volumes for PVCs.
@@ -28,12 +33,26 @@ module "eks" {
   }
 
   eks_managed_node_groups = {
-    # Qdrant, the retrieval app and monitoring run on these
-    cpu = {
+    # small static node just to bootstrap the cluster - coredns, ebs-csi,
+    # and the Karpenter controller itself run here. everything else
+    # (Qdrant, monitoring) runs on nodes Karpenter provisions on demand
+    core = {
       instance_types = ["t3.large"]
-      min_size       = 2
-      max_size       = 3
-      desired_size   = 2
+      min_size       = 1
+      max_size       = 1
+      desired_size   = 1
+
+      labels = {
+        role = "core"
+      }
+
+      taints = {
+        addons = {
+          key    = "CriticalAddonsOnly"
+          value  = "true"
+          effect = "NO_SCHEDULE"
+        }
+      }
     }
 
     # one g4dn.xlarge = one NVIDIA T4 GPU, AL2_x86_64_GPU AMI ships
