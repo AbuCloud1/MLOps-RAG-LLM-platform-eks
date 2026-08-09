@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: qdrant
+  namespace: rag
+---
+# qdrant doesn't call the k8s API, but every pod runs as some service
+# account. giving it an explicit, scoped-down one instead of the
+# implicit default account is basic least-privilege hygiene.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: qdrant-viewer
+  namespace: rag
+rules:
+  - apiGroups: [""]
+    resources: ["pods", "services"]
+    verbs: ["get", "list"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: qdrant-viewer
+  namespace: rag
+subjects:
+  - kind: ServiceAccount
+    name: qdrant
+    namespace: rag
+roleRef:
+  kind: Role
+  name: qdrant-viewer
+  apiGroup: rbac.authorization.k8s.io
