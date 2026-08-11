@@ -1,1 +1,2 @@
 mlflow-skinny==2.19.0
+sentence-transformers==3.3.1
