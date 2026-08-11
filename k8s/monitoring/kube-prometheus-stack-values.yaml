@@ -1,0 +1,39 @@
+# small cluster so trim everything down dont need alertmanager here
+alertmanager:
+  enabled: false
+grafana:
+  adminPassword: admin
+  defaultDashboardsEnabled: true
+  resources:
+    limits:
+      memory: 256Mi
+    requests:
+      cpu: 50m
+      memory: 128Mi
+kube-state-metrics:
+  resources:
+    requests:
+      cpu: 50m
+      memory: 100Mi
+prometheus:
+  prometheusSpec:
+    podMonitorSelectorNilUsesHelmValues: false
+    resources:
+      limits:
+        memory: 800Mi
+      requests:
+        cpu: 100m
+        memory: 400Mi
+    # short retention this is a demo cluster not a real deployment
+    retention: 6h
+    serviceMonitorSelectorNilUsesHelmValues: false
+prometheus-node-exporter:
+  resources:
+    requests:
+      cpu: 25m
+      memory: 50Mi
+prometheusOperator:
+  resources:
+    requests:
+      cpu: 50m
+      memory: 128Mi

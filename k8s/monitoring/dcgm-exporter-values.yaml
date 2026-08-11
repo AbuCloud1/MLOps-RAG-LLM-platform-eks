@@ -1,0 +1,12 @@
+# only run on the gpu node has to tolerate the same taint vllm does
+nodeSelector:
+  nvidia.com/gpu: "true"
+tolerations:
+  - effect: NoSchedule
+    key: nvidia.com/gpu
+    operator: Exists
+serviceMonitor:
+  enabled: true
+  # matches the release label prometheus is watching for
+  additionalLabels:
+    release: kube-prometheus-stack
