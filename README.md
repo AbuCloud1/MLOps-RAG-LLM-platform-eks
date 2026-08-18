@@ -3,6 +3,7 @@
 ## What is this?
 
 This is a private "ask questions about me?" chatbot that runs entirely on my own infrastructure. 
+<img width="1280" height="831" alt="ScreenRecording2026-08-07at14 32 48-ezgif com-video-to-gif-converter" src="https://github.com/user-attachments/assets/b13c363f-d5ae-4769-b5b8-7ca34a3d15f2" />
 
 ## How it works
 
@@ -18,7 +19,7 @@ question -> embed -> Qdrant finds relevant notes -> build prompt with context ->
 ```
 
 I built this to go deep on the MLOps stack end to end: provisioning, GPU serving, retrieval, a model registry, evaluation, monitoring, and CI.
-<img width="1280" height="831" alt="ScreenRecording2026-08-07at14 32 48-ezgif com-video-to-gif-converter" src="https://github.com/user-attachments/assets/b13c363f-d5ae-4769-b5b8-7ca34a3d15f2" />
+<img width="682" height="646" alt="image" src="https://github.com/user-attachments/assets/50eb69f3-cfb3-405b-9e1c-573cba058a59" />
 
 
 ## Tech Stack
